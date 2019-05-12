@@ -21,6 +21,20 @@ newsapi = NewsApiClient(api_key='11a7d4ea5ca44a99838403e265a62c16')
 #                                      page=2)
 
 # /v2/sources
+# Поиск по категориям
+def category():
+	pass
+
+
+
+# Поиск по ключевым словам
+def description():
+	pass
+
+# Поиск по запросу
+def searh_public():
+	pass
+
 sources = newsapi.get_sources()
 
 language = str(input('Введите язык: '))
