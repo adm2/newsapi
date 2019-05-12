@@ -22,34 +22,37 @@ def input_country():
    return input_country
 
 def input_sort_by():
-	input_sort_by = int(input('Выберете сортировку \n 1 - статьи, более тесно связанные с ключевыми словами \n 2 - Статьи из популярных источников и издателей на первом месте \n 3 - Новые статьи на первом месте \n'))
-	if input_sort_by == 1:
-		sort_by = 'relevancy'
-	elif input_sort_by == 2:
-		sort_by = 'popularity'
-	elif input_sort_by == 3:
-		sort_by = 'publishedAt'
-	return sort_by
+    try:
+        input_sort_by = int(input('Выберете сортировку \n 1 - статьи, более тесно связанные с ключевыми словами \n 2 - Статьи из популярных источников и издателей на первом месте \n 3 (по умолчанию) - Новые статьи на первом месте \n'))
+        if input_sort_by == 1:
+            sort_by = 'relevancy'
+        elif input_sort_by == 2:
+            sort_by = 'popularity'
+        elif input_sort_by == 3:
+            sort_by = 'publishedAt'
+    except:
+        sort_by = 'publishedAt'
+    return sort_by
 
 def input_category():
     select = int(input('Выберете категорию \n 1 - Бизнес \n 2 - Развлечения \n 3 - Основные \n 4 - Наука \n 5 - Спорт \n 6 - Технологии \n'))
-	if select == 1:
-		category = 'business'
-	elif select == 2:
-		category = 'entertainment'
-	elif select == 3:
-		category = 'general'
-	elif select == 4:
-		category = 'science'
-	elif select == 5:
-		category = 'sports'
-	elif select == 6:
+    if select == 1:
+        category = 'business'
+    elif select == 2:
+        category = 'entertainment'
+    elif select == 3:
+        category = 'general'
+    elif select == 4:
+        category = 'science'
+    elif select == 5:
+        category = 'sports'
+    elif select == 6:
         category = 'technology'
     return category
 
 def input_keyword():
-	keyword = str(input('Введите ключевое слово на english: '))
-	return keyword
+    keyword = str(input('Введите ключевое слово на english: '))
+    return keyword
 
 # Получить последние публикации по списку категорий.
 def category():
@@ -58,7 +61,7 @@ def category():
                                               page=input_page(),
                                               country=input_country(),
                                               )
-	pprint.pprint (top_headlines)
+    pprint.pprint (top_headlines)
 
 # Получить последние публикации по списку ключевых слов.
 def description(): 
