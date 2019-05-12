@@ -5,13 +5,25 @@ from newsapi import NewsApiClient
 # Init
 newsapi = NewsApiClient(api_key='11a7d4ea5ca44a99838403e265a62c16')
 
-# Получить последние публикации по списку категорий.
-def category(select, lang):
-	if lang == 1:
+def input_language():
+	input_language = int(input('Выберете язык \n 1 - Русский \n 2 - Английский \n'))
+	if input_language == 1:
 		language = 'ru'
-	elif lang == 2:
+	elif input_language == 2:
 		language = 'en'
+	return language
 
+def input_page():
+	input_page = int(input('Укажите номер страницы: '))
+	return input_page
+#	input_pagesize = int(input('Укажите количество результатов, возвращаемых на странице. 100 это максимум: '))
+
+	
+
+
+# Получить последние публикации по списку категорий.
+def category():
+	select = int(input('Выберете категорию \n 1 - Бизнес \n 2 - Развлечения \n 3 - Основные \n 4 - Наука \n 5 - Спорт \n 6 - Технологии \n'))
 	if select == 1:
 		category = 'business'
 	elif select == 2:
@@ -24,17 +36,22 @@ def category(select, lang):
 		category = 'sports'
 	elif select == 6:
 		category = 'technology'
+	#input_language()
+	#input_page()
 	top_headlines = newsapi.get_top_headlines(category=category,
-											  language=language,
+											  language=input_language(),
+											  page=input_page(),
 											  )
 	pprint.pprint (top_headlines)
 
 # Получить последние публикации по списку ключевых слов.
 def description():
-    keyword = str(input('Введите ключевые слова на english: ').split)
+    parameter_search()
+    keyword = str(input('Введите ключевое слово на english: '))
     all_articles = newsapi.get_everything(q=keyword,
-                                          language='en',
-                                          )                                       
+                                          language=language,
+                                          page=input_page,
+										  )                                       
     pprint.pprint (all_articles)
 
 # Поиск публикаций по запросу.
@@ -44,9 +61,9 @@ def searh_public():
 user_input = int(input('Выберете пункт в меню \n 1 - Последние публикации по списку категорий \n 2 - Последние публикации по списку ключевых слов \n 3 - Поиск публикаций по запросу \n'))
 
 if user_input == 1: # Последние публикации по списку категорий
-    input_category = int(input('Выберете категорию \n 1 - Бизнес \n 2 - Развлечения \n 3 - Основные \n 4 - Наука \n 5 - Спорт \n 6 - Технологии \n'))
-    input_language = int(input('Выберете язык \n 1 - Русский \n 2 - Английский \n'))
-    category(input_category, input_language)
+    
+#    input_language = int(input('Выберете язык \n 1 - Русский \n 2 - Английский \n'))
+    category()
 elif user_input == 2: # Последние публикации по списку ключевых слов
 	description()
 elif user_input == 3: # Поиск публикаций по запросу

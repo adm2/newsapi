@@ -1,9 +1,8 @@
 import re
 import pprint
-from newsapi import NewsApiClient
+import requests
 
-# Init
-newsapi = NewsApiClient(api_key='11a7d4ea5ca44a99838403e265a62c16')
+api_key='11a7d4ea5ca44a99838403e265a62c16'
 
 # Получить последние публикации по списку категорий.
 def category(select, lang):
