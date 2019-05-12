@@ -18,7 +18,10 @@ def input_page():
 	return input_page
 #	input_pagesize = int(input('Укажите количество результатов, возвращаемых на странице. 100 это максимум: '))
 
-	
+def input_country():
+# разорбать эту каку
+   input_country = 	input('Укажите страну для поиска новостей (ae ar at au be bg br ca ch cn co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za): ')
+   return input_country
 
 
 # Получить последние публикации по списку категорий.
@@ -36,21 +39,19 @@ def category():
 		category = 'sports'
 	elif select == 6:
 		category = 'technology'
-	#input_language()
-	#input_page()
 	top_headlines = newsapi.get_top_headlines(category=category,
 											  language=input_language(),
 											  page=input_page(),
+											  country=input_country(),
 											  )
 	pprint.pprint (top_headlines)
 
 # Получить последние публикации по списку ключевых слов.
 def description():
-    parameter_search()
     keyword = str(input('Введите ключевое слово на english: '))
     all_articles = newsapi.get_everything(q=keyword,
-                                          language=language,
-                                          page=input_page,
+                                          language=input_language(),
+                                          page=input_page(),
 										  )                                       
     pprint.pprint (all_articles)
 
