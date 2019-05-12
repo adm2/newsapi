@@ -15,13 +15,21 @@ def input_language():
 def input_page():
 	input_page = int(input('Укажите номер страницы: '))
 	return input_page
-#	input_pagesize = int(input('Укажите количество результатов, возвращаемых на странице. 100 это максимум: '))
 
 def input_country():
 # разорбать эту каку
    input_country = 	input('Укажите страну для поиска новостей (ae ar at au be bg br ca ch cn co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za): ')
    return input_country
 
+def input_sort_by():
+	input_sort_by = int(input('Выберете сортировку \n 1 - статьи, более тесно связанные с ключевыми словами \n 2 - Статьи из популярных источников и издателей на первом месте \n 3 - Новые статьи на первом месте \n'))
+	if input_sort_by == 1:
+		sort_by = 'relevancy'
+	elif input_sort_by == 2:
+		sort_by = 'popularity'
+	elif input_sort_by == 3:
+		sort_by = 'publishedAt'
+	return sort_by
 
 # Получить последние публикации по списку категорий.
 def category():
@@ -37,12 +45,12 @@ def category():
 	elif select == 5:
 		category = 'sports'
 	elif select == 6:
-		category = 'technology'
-	top_headlines = newsapi.get_top_headlines(category=category,
-											  language=input_language(),
-											  page=input_page(),
-											  country=input_country(),
-											  )
+        category = 'technology'
+    top_headlines = newsapi.get_top_headlines(category=category,
+                                              language=input_language(),
+                                              page=input_page(),
+                                              country=input_country(),
+                                              )
 	pprint.pprint (top_headlines)
 
 # Получить последние публикации по списку ключевых слов.
@@ -50,8 +58,9 @@ def description():
     keyword = str(input('Введите ключевое слово на english: '))
     all_articles = newsapi.get_everything(q=keyword,
                                           language=input_language(),
+                                          sort_by=input_sort_by(),
                                           page=input_page(),
-										  )                                       
+                                          )                                       
     pprint.pprint (all_articles)
 
 # Поиск публикаций по запросу.
@@ -61,8 +70,6 @@ def searh_public():
 user_input = int(input('Выберете пункт в меню \n 1 - Последние публикации по списку категорий \n 2 - Последние публикации по списку ключевых слов \n 3 - Поиск публикаций по запросу \n'))
 
 if user_input == 1: # Последние публикации по списку категорий
-    
-#    input_language = int(input('Выберете язык \n 1 - Русский \n 2 - Английский \n'))
     category()
 elif user_input == 2: # Последние публикации по списку ключевых слов
 	description()
