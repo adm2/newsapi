@@ -5,11 +5,14 @@ from newsapi import NewsApiClient
 newsapi = NewsApiClient(api_key='11a7d4ea5ca44a99838403e265a62c16') # с безопасностью всё плохо...
 
 def input_language():
-	input_language = int(input('Выберете язык \n 1 - Русский (ru) \n 2 - Английский (en) \n'))
-	if input_language == 1:
+	try:
+		input_language = int(input('Выберете язык \n 1 (Enter) - Русский (ru) \n 2 - Английский (en) \n'))
+	    if input_language == 1:
+		    language = 'ru'
+	    elif input_language == 2:
+		    language = 'en'
+	except:
 		language = 'ru'
-	elif input_language == 2:
-		language = 'en'
 	return language
 
 def input_page():
@@ -17,13 +20,16 @@ def input_page():
 	return input_page
 
 def input_country():
-# разорбать эту каку
-   input_country = 	input('Укажите страну для поиска новостей (ae ar at au be bg br ca ch cn co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za): ')
-   return input_country
+#разорбать эту каку
+    try:
+    	input_country =	input('Укажите страну для поиска новостей (ae ar at au be bg br ca ch cn co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za): ')
+    except:
+    	input_country = 'ru'
+    return input_country
 
 def input_sort_by():
     try:
-        input_sort_by = int(input('Выберете сортировку \n 1 - статьи, более тесно связанные с ключевыми словами \n 2 - Статьи из популярных источников и издателей на первом месте \n 3 (по умолчанию) - Новые статьи на первом месте \n'))
+        input_sort_by = int(input('Выберете сортировку \n 1 - статьи, более тесно связанные с ключевыми словами \n 2 - Статьи из популярных источников и издателей на первом месте \n 3 (Enter) - Новые статьи на первом месте \n'))
         if input_sort_by == 1:
             sort_by = 'relevancy'
         elif input_sort_by == 2:
