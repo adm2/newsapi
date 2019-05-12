@@ -1,3 +1,4 @@
+import re
 from newsapi import NewsApiClient
 
 # Init
@@ -35,10 +36,16 @@ def category(select):
 		category = 'sports'
 	elif select == 6:
 		category = 'technology'
-	top_headlines = newsapi.get_top_headlines(category = category)
+	top_headlines = newsapi.get_top_headlines(category=category,
+											  language='ru',
+											  country='ru')
 	print (top_headlines)
 
-category(int(input('Выберете категорию \n 1 - Бизнес \n 2 - Развлечения \n 3 - Основные \n 4 - Наука \n 5 - Спорт \n 6 - Технологии \n')))
+select = int(input('Выберете категорию \n 1 - Бизнес \n 2 - Развлечения \n 3 - Основные \n 4 - Наука \n 5 - Спорт \n 6 - Технологии \n'))
+
+category(select)
+
+
 
 
 # Поиск по ключевым словам
