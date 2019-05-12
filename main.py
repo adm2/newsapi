@@ -22,9 +22,23 @@ newsapi = NewsApiClient(api_key='11a7d4ea5ca44a99838403e265a62c16')
 
 # /v2/sources
 # Поиск по категориям
-def category():
-	pass
+def category(select):
+	if select == 1:
+		category = 'business'
+	elif select == 2:
+		category = 'entertainment'
+	elif select == 3:
+		category = 'general'
+	elif select == 4:
+		category = 'science'
+	elif select == 5:
+		category = 'sports'
+	elif select == 6:
+		category = 'technology'
+	top_headlines = newsapi.get_top_headlines(category = category)
+	print (top_headlines)
 
+category(int(input('Выберете категорию \n 1 - Бизнес \n 2 - Развлечения \n 3 - Основные \n 4 - Наука \n 5 - Спорт \n 6 - Технологии \n')))
 
 
 # Поиск по ключевым словам
@@ -35,8 +49,9 @@ def description():
 def searh_public():
 	pass
 
-sources = newsapi.get_sources()
+#sources = newsapi.get_sources()
 
-language = str(input('Введите язык: '))
-top_headlines = newsapi.get_top_headlines(language=language)
-print (top_headlines)
+
+#language = str(input('Введите язык: '))
+#top_headlines = newsapi.get_top_headlines(language=language)
+#print (top_headlines)
