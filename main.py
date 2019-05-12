@@ -1,9 +1,8 @@
-import re
+import re #оставлено чтобы помнить про некорректный  пользовательский ввод
 import pprint
 from newsapi import NewsApiClient
 
-# Init
-newsapi = NewsApiClient(api_key='11a7d4ea5ca44a99838403e265a62c16')
+newsapi = NewsApiClient(api_key='11a7d4ea5ca44a99838403e265a62c16') # с безопасностью всё плохо...
 
 def input_language():
 	input_language = int(input('Выберете язык \n 1 - Русский \n 2 - Английский \n'))
@@ -81,6 +80,11 @@ elif user_input == 3: # Поиск публикаций по запросу
 elif user_input == 4:
 	sources = newsapi.get_sources()
 	pprint.pprint (sources)
+
+# я хоть в правильном направлении иду? А то столько всякой фиганды тут понаписано, что походу повернул не туда...
+
+
+
 
 
 #language = str(input('Введите язык: '))
