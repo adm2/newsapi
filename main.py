@@ -5,7 +5,7 @@ from newsapi import NewsApiClient
 newsapi = NewsApiClient(api_key='11a7d4ea5ca44a99838403e265a62c16') # с безопасностью всё плохо...
 
 def input_language():
-	input_language = int(input('Выберете язык \n 1 - Русский \n 2 - Английский \n'))
+	input_language = int(input('Выберете язык \n 1 - Русский (ru) \n 2 - Английский (en) \n'))
 	if input_language == 1:
 		language = 'ru'
 	elif input_language == 2:
@@ -31,9 +31,8 @@ def input_sort_by():
 		sort_by = 'publishedAt'
 	return sort_by
 
-# Получить последние публикации по списку категорий.
-def category():
-	select = int(input('Выберете категорию \n 1 - Бизнес \n 2 - Развлечения \n 3 - Основные \n 4 - Наука \n 5 - Спорт \n 6 - Технологии \n'))
+def input_category():
+    select = int(input('Выберете категорию \n 1 - Бизнес \n 2 - Развлечения \n 3 - Основные \n 4 - Наука \n 5 - Спорт \n 6 - Технологии \n'))
 	if select == 1:
 		category = 'business'
 	elif select == 2:
@@ -46,7 +45,15 @@ def category():
 		category = 'sports'
 	elif select == 6:
         category = 'technology'
-    top_headlines = newsapi.get_top_headlines(category=category,
+    return category
+
+def input_keyword():
+	keyword = str(input('Введите ключевое слово на english: '))
+	return keyword
+
+# Получить последние публикации по списку категорий.
+def category():
+    top_headlines = newsapi.get_top_headlines(category=input_category(),
                                               language=input_language(),
                                               page=input_page(),
                                               country=input_country(),
@@ -54,16 +61,15 @@ def category():
 	pprint.pprint (top_headlines)
 
 # Получить последние публикации по списку ключевых слов.
-def description():
-    keyword = str(input('Введите ключевое слово на english: '))
-    all_articles = newsapi.get_everything(q=keyword,
+def description(): 
+    all_articles = newsapi.get_everything(q=input_keyword(),
                                           language=input_language(),
                                           sort_by=input_sort_by(),
                                           page=input_page(),
                                           )                                       
     pprint.pprint (all_articles)
 
-# Поиск публикаций по запросу.
+# Поиск публикаций по запросу. когда-нибудь я и до тебя дойду
 def searh_public():
 	pass
 
